@@ -93,7 +93,7 @@ div#navigation ul li a:hover, div#navigation ul li a:focus {
     padding-top: 50px;
 }
 .main-content {
-	background:url('http://habrastorage.org/getpro/habr/avatars/eab/1ef/e54/eab1efe545e148b27b6fa64234f57267.png') no-repeat center 70px, url('http://p1.pichost.me/i/58/1822156.jpg') no-repeat bottom center;
+	background:url("../images/star.png") no-repeat center 70px, url("../images/galaxy.jpg") no-repeat bottom center;
 	width:300px;
 	height:300px;
 	margin: 0 auto;
