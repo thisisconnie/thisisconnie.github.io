@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>My Album</title>
+    <meta name="description" content="Hello, Keyboard!">
+    <script src="https://aframe.io/releases/0.2.0/aframe.min.js"></script>
+    <script src="//cdn.rawgit.com/donmccurdy/aframe-extras/v1.13.0/dist/aframe-extras.min.js"></script>
+    <script src="https://rawgit.com/mayognaise/aframe-gif-shader/master/dist/aframe-gif-shader.min.js"></script>
+    <script src="https://rawgit.com/ngokevin/aframe-text-component/master/dist/aframe-text-component.min.js"></script>
+    <script src="myfont.typeface.js"></script>
+  </head>
+  <body>
+      
+      <script>
+        AFRAME.registerComponent('set-background', 
+        {
+         schema: {default: ''},
+         init() 
+         {
+           const sky = document.querySelector('a-sky');
+          
+           this.el.addEventListener('click', () => 
+           {
+             sky.setAttribute('src', this.data);
+           });
+         }
+        });
+        
+        AFRAME.registerComponent('set-description', 
+        {
+          schema: {default: ''},
+          init() 
+          {
+            const text_entity = document.querySelector('#text-entity');
+
+            this.el.addEventListener('click', () => 
+            {
+              var text_attribute = 'text: ' + this.data
+              text_entity.setAttribute('text', text_attribute);
+            });
+          }
+        });
+        
+        AFRAME.registerComponent('set-music', 
+        {
+          schema: {default: ''},
+          init() 
+          {
+            const sound_entity = document.querySelector('#sound-entity');
+
+            this.el.addEventListener('click', () => 
+            {
+              var sound_attribute = 'src: ' + this.data + "; autoplay: true" 
+              sound_entity.setAttribute('sound', sound_attribute);
+            });
+          }
+        });
+      </script>
+      
+      <a-scene>
+          <a-camera position="0 0 0">
+              <a-cursor color="#FFF" fuse="true" timeout="10"></a-cursor>
+          </a-camera>
+          <a-sky src="360_images/360_image_1.jpg"></a-sky>
+          
+          <a-plane src="360_images/360_image_1.jpg"  
+            height="3" width="3" position="-6 -2 -8"
+            set-background="360_images/360_image_1.jpg"
+            set-description="A beautiful mountain landscape"
+            set-music="audio/Walk_In_The_Park.mp3"></a-plane>
+          
+          <a-plane src="360_images/360_image_2.jpg" 
+            height="3" width="3" position="0 -2 -8"
+            set-background="360_images/360_image_2.jpg"
+            set-description="Palace"
+            set-music="audio/64_Sundays.mp3"></a-plane>
+          
+          <a-plane src="360_images/360_image_3.jpg" 
+            height="3" width="3" position="6 -2 -8"
+            set-background="360_images/360_image_3.jpg"
+            set-description="The beach"
+            set-music="audio/Dub_Spirit.mp3"></a-plane>
+            
+        <a-entity id="text-entity" text="text: A beautiful mountain landscape" position="-6 -6 -8" rotation="0 0 0"></a-entity>      
+        <a-entity id="sound-entity" sound="src: audio/Walk_In_The_Park.mp3; autoplay: true"></a-entity>
+      </a-scene>
+  </body>
+  
+</html>
