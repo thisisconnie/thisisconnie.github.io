@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Hello, Keyboard! • A-Frame</title>
+    <meta name="description" content="VRCamp">
+    <script src="https://aframe.io/releases/0.2.0/aframe.min.js"></script> <!-- aframe package that lets us make the web page vr friendly-->
+    <script src="//cdn.rawgit.com/donmccurdy/aframe-extras/v1.13.0/dist/aframe-extras.min.js"></script>
+    <script src="https://rawgit.com/mayognaise/aframe-gif-shader/master/dist/aframe-gif-shader.min.js"></script>
+  </head>
+  <!-- aframe.io/blog: a good source for other people's project-->
+  <body>
+    <a-scene> <!-- a frame content. EVERYTHING you want on the page needs to be here. -->
+      <!-- a scene has its own set of tags, all of which represent 3D objects-->
+
+      <a-camera position="0 0 2"> <!-- Position defines the initial position of the camera -->
+        <a-cursor color="#FFFFF">
+      </a-camera>
+
+      <!-- Using the asset management system. -->
+      <!--<a-collada-model src="#ship1" ></a-collada-model>-->
+      
+
+      <a-box color="#2132F4" 
+        width="5" height="4" depth="3" 
+        position = "10 11 -50" 
+        rotation = "90 0 0" 
+        src = "cat.jpg">
+          <a-animation attribute="rotation" begin="click" repeat="indefinite" to="0 360 0"></a-animation>
+          <!-- animation must be a child of the object to be animated-->
+            <!-- begin: when to start the animation-->
+        <!-- the units for the a-box dimensions are supposed to be percieved in meters to the viewer-->
+        <!-- Height: y- axis, Depth: z-axis, Width:x axis-->
+        <!-- Position: "x y z" --> 
+        <!-- src  = "image source"; puts the box in a texture, filtered through the color-->
+      </a-box>
+
+
+      <a-sky
+        color="#6EBAA7"
+        src = "360/StarPattern.jpg">
+        <!-- src  = "image source"; a background, filtered through the color, wraps around the experience like a sphere-->
+
+      </a-sky>
+
+      
+        <a-box width="1" height="5" depth="1" position = "0 0 -5" rotation = "0 90 0"><!-- body -->
+          <a-box width="1" height="4" depth=".8" position = "0 0 .9">
+            <a-box width="1" height="3" depth=".6" position = "0 0 .7">
+              <a-box width="1" height="2" depth=".5" position = "0 0 .55">
+                <a-box width="1" height="1" depth=".4" position = "0 0 .45"></a-box>
+                <a-sphere color="yellow" radius=".5" position = "1 1 -1"></a-sphere> <!-- eyes -->
+                <a-sphere color="yellow" radius=".5" position = "-1 1 -1"></a-sphere> <!-- eyes -->
+              </a-box>
+            </a-box></a-box>
+          <a-box width="1" height="4.5" depth=".8" position = "0 0 -.9">
+            <a-box width="1" height="4" depth=".8" position = "0 0 -.8">
+              <a-box width="1" height="3.5" depth=".6" position = "0 0 -.7">
+                <a-box width="1" height="3" depth=".5" position = "0 0 -.55">
+                  <a-box width="1" height="4" depth="1" position = "0 0 -.75">
+                    <a-box width="1" height="1" depth="1" position = "0 2 -1"></a-box> <!-- fins -->
+                    <a-box width="1" height="1" depth="1" position = "0 -2 -1"></a-box> <!-- fins -->
+                  </a-box>
+                </a-box>
+              </a-box>
+            </a-box>  </a-box>
+          <a-animation attribute="rotation" from = "0 75 0" to="0 105 0" direction="alternate" repeat="indefinite"></a-animation>
+        </a-box>
+      
+    </a-scene>
+  </body>
+
+</html>
