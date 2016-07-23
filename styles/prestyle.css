@@ -71,7 +71,7 @@ div#navigation ul {
   list-style-type: none;
 }
 div#navigation ul li { 
-  float: center;
+  float: left;
   margin-right: 11em;
 }
 div#navigation ul li a { 
