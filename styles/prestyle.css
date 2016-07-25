@@ -71,8 +71,8 @@ div#navigation ul {
   list-style-type: none;
 }
 div#navigation ul li { 
-  float: left;
-  margin-right: 10em;
+  float: center;
+/*  margin-right: 15em;*/
 }
 div#navigation ul li a { 
   padding: 0.05em 1em;
