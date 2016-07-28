@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Fish and Chill • A-Frame</title>
+    <meta name="description" content="VRCamp">
+    <script src="https://aframe.io/releases/0.2.0/aframe.min.js"></script> <!-- aframe package that lets us make the web page vr friendly-->
+    <script src="//cdn.rawgit.com/donmccurdy/aframe-extras/v1.13.0/dist/aframe-extras.min.js"></script>
+    <script src="https://rawgit.com/mayognaise/aframe-gif-shader/master/dist/aframe-gif-shader.min.js"></script>
+    <script src="https://rawgit.com/ngokevin/aframe-text-component/master/dist/aframe-text-component.min.js"></script>
+  </head>
+  <!-- aframe.io/blog: a good source for other people's project-->
+  <body>
+    <a-scene>
+
+      <a-sky color="#6EBAA7" src = "360/Underwater.jpg"></a-sky>
+
+      <a-camera position="0 0 2">
+        <a-cursor color="#FFFFF">
+      </a-camera>
+      <a-entity id="text-entity" text="text:Song - Malmo Sunrise by The 126ers" position="-5.5 -3 -2" rotation="0 0 0"></a-entity>
+
+      <a-entity id="sound-entity" sound="src: Malmo_Sunrise.ogg; autoplay: true; loop: true"></a-entity><!-- adds sound-->
+        
+
+      <!-- round fish -->
+        <a-entity>
+          <a-animation attribute="rotation" from="0 0 0" to="0 -360 0" dur="10000" repeat ="indefinite" easing= linear></a-animation> <!-- rotate all around the screen clockwise-->
+          <a-entity position= "0 500 50000"> <!-- need an a-entity wrapper because a-animation -->
+            <a-animation attribute="position" from="-50 200 -100" to="0 0 -10" dur="10000"></a-animation> <!-- descend -->
+            <a-sphere color="orange" radius="1" scale="3 1 .5" src="Scales.jpg">
+              <a-animation attribute="rotation" from = "0 -15 0" to="0 15 0" direction="alternate" repeat="indefinite" easing=linear dur="500"></a-animation> <!-- oscillate to simulate swimming -->
+              <a-sphere color="yellow" radius=".3" position=".5 .5 1" scale=".25 1 1" ></a-sphere> <!-- eyes -->
+              <a-sphere color="yellow" radius=".3" position=".5 .5 -1" scale=".25 1 1"></a-sphere> <!-- eyes -->
+              <a-cone color="tomato" radius-bottom="1.2" radius-top=".1" height=".2" rotation="0 0 -90" position="-1 0 0" scale="1 1 .5"></a-cone> <!-- back fin -->
+              <a-cone color="black" radius-bottom="1" radius-top=".1" height=".2" rotation="0 0 -90" position="0 0 1" scale="1 1 .1">
+                <a-animation attribute="rotation" from="0 0 -90" to="0 15 -90" direction="alternate" repeat="indefinite"></a-animation> <!-- fin -->
+              </a-cone>
+              <a-cone color="black" radius-bottom="1" radius-top=".1" height=".2" rotation="0 0 -90" position="0 0 -1" scale="1 1 .1"> <!-- fin -->
+                <a-animation attribute="rotation" from="0 0 -90" to="0 -15 -90" direction="alternate" repeat="indefinite"></a-animation>
+              </a-cone>
+            </a-sphere>
+          </a-entity>
+        </a-entity>
+      <!-- /round fish -->
+
+      <a-entity id="squid" scale =".1 .1 .1 " position="-1 0 -1">
+        <a-cylinder id="squidBody" color="tomato" height="3" radius="1.5" rotation="0 45 0"><!-- main body-->
+          <a-cone color="tomato" radius-bottom="2" radius-top="0" position = "0 3 0" scale = "1 4 1"></a-cone>
+          <a-torus color="blue" position="0 -.7 1.5" segments-radial="50" segments-tubular="200" radius=".5" radius-tubular="0.1" ></a-torus><!-- mouth -->
+          <a-sphere color="blue" position="1 .2 1" radius=".5"></a-sphere>
+          <a-sphere color="blue" position="-1 .2 1" radius=".5"></a-sphere>
+          
+          <!-- Small Tentacles-->
+            <a-cone color="tomato" radius-bottom=".5" radius-top="0" position = ".25 -2.5 .2" scale = "1 2 1" rotation="180 0 0">
+              <a-animation attribute="rotation" from = "195 0 0" to="165 0 0" direction="alternate" repeat="indefinite" dur="1000" easing=linear></a-animation>
+            </a-cone>
+            <a-cone color="tomato" radius-bottom=".5" radius-top="0" position = ".75 -2.5 -1" scale = "1 2 1" rotation="180 0 0">
+              <a-animation attribute="rotation" from = "190 0 0" to="170 0 0" direction="alternate" repeat="indefinite" begin="30" dur="1500" easing=linear></a-animation>
+            </a-cone>
+            <a-cone color="tomato" radius-bottom=".5" radius-top="0" position = "-.25 -2.5 1" scale = "1 2 1" rotation="180 0 0">
+              <a-animation attribute="rotation" from = "195 0 0" to="165 0 0" direction="alternate" repeat="indefinite" begin="50" dur="500" easing=linear></a-animation>
+            </a-cone>
+            <a-cone color="tomato" radius-bottom=".5" radius-top="0" position = "-.75 -2.5 -.2" scale = "1 2 1" rotation="180 0 0">
+              <a-animation attribute="rotation" from = "195 0 0" to="165 0 0" direction="alternate" repeat="indefinite" begin="20" dur="1200" easing=linear></a-animation>
+            </a-cone>
+          <!-- /Small Tentacles -->
+
+
+          <!-- Long tentacles -->
+            <a-sphere color="tomato" radius=".3" position="1.2 -1.5 0">
+              <a-animation attribute="rotation" from = "0 0 0" to="0 0 135" direction="alternate" repeat="indefinite" dur= "2500" easing=linear></a-animation>
+              <a-cylinder color="tomato" height="1.5" radius=".3" position="0 -1 0">
+                <a-sphere color="tomato" radius=".3" position="0 -1.5 0">
+                  <a-animation attribute="rotation" from="0 0 105" to = "0 0 -105" direction="alternate" repeat="indefinite" dur="2000" easing=linear></a-animation>
+                  <a-cylinder color="tomato" height="1.5" radius=".3" position="0 -1.5 0">
+                    <a-cone color="tomato" radius-bottom=".5" radius-top="0" position = "0 -1.75 0" scale = ".5 2 1" rotation="180 0 0"></a-cone>
+                  </a-cylinder>
+                </a-sphere>
+              </a-cylinder>
+            </a-sphere>
+
+            <a-sphere color="tomato" radius=".3" position="-1.2 -1.5 0" rotation="0 180 0">
+              <a-animation attribute="rotation" from = "0 0 0" to="0 0 -135" direction="alternate" repeat="indefinite" dur= "2500" easing=linear></a-animation>
+              <a-cylinder color="tomato" height="1.5" radius=".3" position="0 -1 0">
+                <a-sphere color="tomato" radius=".3" position="0 -1.5 0"">
+                  <a-animation attribute="rotation" from="0 0 -105" to = "0 0 105" direction="alternate" repeat="indefinite" dur="2000" easing=linear></a-animation>
+                  <a-cylinder color="tomato" height="1.5" radius=".3" position="0 -1.5 0">
+                    <a-cone color="tomato" radius-bottom=".5" radius-top="0" position = "0 -1.75 0" scale = ".5 2 1" rotation="180 0 0"></a-cone>
+                  </a-cylinder>
+                </a-sphere>
+              </a-cylinder>
+            </a-sphere>
+          <!-- /Long tentacles -->
+        </a-cylinder>
+      </a-entity>
+
+      <!-- crab -->
+        <a-entity>
+          <a-animation attribute="rotation" from="0 210 0" to="0 150 0" dur="5000" direction="alternate" repeat ="indefinite"></a-animation>
+
+          <a-cylinder color="tan" height=".25" radius=".6" position="0 0 -15">
+          
+          <!-- shell-->
+            <a-torus color="red" position="0 .26 0" radius=".6" radius-tubular="0.1" rotation="90 15 0">
+            <a-torus color="orange" position="0 0 -.4" radius=".4" radius-tubular="0.1" rotation="0 15 0">
+              <a-torus color="red" position="0 0 -.4" radius=".25" radius-tubular="0.1" rotation="0 10 0">
+                <a-cone color="orange" radius-bottom=".3" radius-top="0" height=".5" rotation="-90 0 0" position="0 0 -.4"></a-cone>
+              </a-torus>
+            </a-torus>
+            </a-torus>
+          <!-- /shell -->
+
+          <!-- head -->
+            <a-sphere color="orange" radius=".3" position="0 0 .8" scale=".75 1 .5">
+              <a-cone color="white" radius-bottom=".2" radius-top=".1" height=".05" rotation="180 0 0" position="0 -.1 .3" scale="1 1 .1"></a-cone>
+              <a-sphere color="green" radius=".05" position=".1 .1 .4"></a-sphere>
+              <a-sphere color="green" radius=".05" position="-.1 .1 .4"></a-sphere>
+            </a-sphere>
+          <!-- /head -->
+
+          <!-- left hand (our right) -->
+            <a-entity position=".5 0 1">
+              <a-animation attribute="rotation" from="0 0 0" to="0 0 45" direction="alternate" repeat="indefinite"></a-animation>
+              <a-cylinder color="tomato" theta-start="45" theta-length="180" side="double" rotation="90 45 0" radius=".3" height=".01"></a-cylinder>
+            </a-entity>
+            <a-entity position=".5 0 1">
+              <a-cylinder color="tomato" theta-start="-90" theta-length="180" side="double" rotation="90 45 0" radius=".2" height=".01"></a-cylinder>
+            </a-entity>
+          <!-- /left hand -->
+
+          <!-- right hand (our left)-->
+            <a-entity position="-.5 0 1">
+              <a-animation attribute="rotation" from="0 0 0" to="0 0 -45" direction="alternate" repeat="indefinite"></a-animation>
+              <a-cylinder color="tomato" theta-start="135" theta-length="180" side="double" rotation="90 -45 0" radius=".3" height=".01"></a-cylinder>
+            </a-entity>
+            <a-entity position="-.5 0 1">
+              <a-cylinder color="tomato" theta-start="-90" theta-length="180" side="double" rotation="90 -45 0" radius=".2" height=".01"></a-cylinder>
+            </a-entity>
+          <!-- /right hand -->          
+
+          <!-- legs -->
+            <a-entity rotation = "0 0 0"> <!-- rotate around the center of the shell because I'm lazy-->
+              <a-cone color="tomato" radius-bottom=".1" radius-top="0" position = ".6 -.25 .2" scale = "1 .5 1" rotation="180 0 0">
+                <a-animation attribute="rotation" from = "195 0 0" to="165 0 0" direction="alternate" repeat="indefinite" dur="1000" easing=linear></a-animation>
+              </a-cone>
+            </a-entity>
+            <a-entity rotation = "0 30 0">
+              <a-cone color="tomato" radius-bottom=".1" radius-top="0" position = ".6 -.25 .2" scale = "1 .5 1" rotation="180 0 0">
+                <a-animation attribute="rotation" from = "195 0 0" to="165 0 0" direction="alternate" repeat="indefinite" dur="900" easing=linear></a-animation>
+              </a-cone>
+            </a-entity>
+            <a-entity rotation = "0 -30 0">
+              <a-cone color="tomato" radius-bottom=".1" radius-top="0" position = ".6 -.25 .2" scale = "1 .5 1" rotation="180 0 0">
+                <a-animation attribute="rotation" from = "195 0 0" to="165 0 0" direction="alternate" repeat="indefinite" dur="1100" easing=linear></a-animation>
+              </a-cone>
+            </a-entity>
+            <a-entity rotation = "0 210 0">
+              <a-cone color="tomato" radius-bottom=".1" radius-top="0" position = ".6 -.25 .2" scale = "1 .5 1" rotation="180 0 0">
+                <a-animation attribute="rotation" from = "195 0 0" to="165 0 0" direction="alternate" repeat="indefinite" dur="1000" easing=linear></a-animation>
+              </a-cone>
+            </a-entity>
+            <a-entity rotation = "0 150 0">
+              <a-cone color="tomato" radius-bottom=".1" radius-top="0" position = ".6 -.25 .2" scale = "1 .5 1" rotation="180 0 0">
+                <a-animation attribute="rotation" from = "195 0 0" to="165 0 0" direction="alternate" repeat="indefinite" dur="900" easing=linear></a-animation>
+              </a-cone>
+            </a-entity>
+            <a-entity rotation = "0 180 0">
+              <a-cone color="tomato" radius-bottom=".1" radius-top="0" position = ".6 -.25 .2" scale = "1 .5 1" rotation="180 0 0">
+                <a-animation attribute="rotation" from = "195 0 0" to="165 0 0" direction="alternate" repeat="indefinite" dur="1100" easing=linear></a-animation>
+              </a-cone>
+            </a-entity>
+          <!-- /legs -->
+
+          </a-cylinder>
+
+        </a-entity>
+      <!-- /crab -->
+
+      <!-- chest -->
+        <a-entity position ="0 -1 -2" scale="1 1 1">
+          <a-entity>
+            <a-animation attribute="rotation" from = "0 0 0" to="-90 0 0" dur="2000" begin="3000"></a-animation>
+            <a-cylinder color=#A52A2A theta-start="90" theta-length="180" side="double" rotation="90 90 0" radius=".5" position="0 0 .5"></a-cylinder>
+          </a-entity>
+          
+          <a-box color="tomato" depth="1" height=".5" width="1" position="0 -.25 .5">
+
+            <a-entity id="squid" scale =".1 .1 .1 ">
+              <a-animation attribute="position" from = "0 0 0" to="0 2 0" dur="5000" begin="5000" easing=linear></a-animation>
+              <a-cylinder id="squidBody" color="tomato" height="3" radius="1.5"><!-- main body-->
+                <a-cone color="tomato" radius-bottom="2" radius-top="0" position = "0 3 0" scale = "1 4 1"></a-cone>
+                <a-torus color="blue" position="0 -.7 1.5" segments-radial="50" segments-tubular="200" radius=".5" radius-tubular="0.1" ></a-torus><!-- mouth -->
+                <a-sphere color="blue" position="1 .2 1" radius=".5"></a-sphere>
+                <a-sphere color="blue" position="-1 .2 1" radius=".5"></a-sphere>
+                
+                <!-- Small Tentacles-->
+                  <a-cone color="tomato" radius-bottom=".5" radius-top="0" position = ".25 -2.5 .2" scale = "1 2 1" rotation="180 0 0">
+                    <a-animation attribute="rotation" from = "195 0 0" to="165 0 0" direction="alternate" repeat="indefinite" dur="1000" easing=linear></a-animation>
+                  </a-cone>
+                  <a-cone color="tomato" radius-bottom=".5" radius-top="0" position = ".75 -2.5 -1" scale = "1 2 1" rotation="180 0 0">
+                    <a-animation attribute="rotation" from = "190 0 0" to="170 0 0" direction="alternate" repeat="indefinite" begin="30" dur="1500" easing=linear></a-animation>
+                  </a-cone>
+                  <a-cone color="tomato" radius-bottom=".5" radius-top="0" position = "-.25 -2.5 1" scale = "1 2 1" rotation="180 0 0">
+                    <a-animation attribute="rotation" from = "195 0 0" to="165 0 0" direction="alternate" repeat="indefinite" begin="50" dur="500" easing=linear></a-animation>
+                  </a-cone>
+                  <a-cone color="tomato" radius-bottom=".5" radius-top="0" position = "-.75 -2.5 -.2" scale = "1 2 1" rotation="180 0 0">
+                    <a-animation attribute="rotation" from = "195 0 0" to="165 0 0" direction="alternate" repeat="indefinite" begin="20" dur="1200" easing=linear></a-animation>
+                  </a-cone>
+                <!-- /Small Tentacles -->
+
+
+                <!-- Long tentacles -->
+                  <a-sphere color="tomato" radius=".3" position="1.2 -1.5 0">
+                    <a-animation attribute="rotation" from = "0 0 0" to="0 0 135" direction="alternate" repeat="indefinite" dur= "2500" easing=linear></a-animation>
+                    <a-cylinder color="tomato" height="1.5" radius=".3" position="0 -1 0">
+                      <a-sphere color="tomato" radius=".3" position="0 -1.5 0">
+                        <a-animation attribute="rotation" from="0 0 105" to = "0 0 -105" direction="alternate" repeat="indefinite" dur="2000" easing=linear></a-animation>
+                        <a-cylinder color="tomato" height="1.5" radius=".3" position="0 -1.5 0">
+                          <a-cone color="tomato" radius-bottom=".5" radius-top="0" position = "0 -1.75 0" scale = ".5 2 1" rotation="180 0 0"></a-cone>
+                        </a-cylinder>
+                      </a-sphere>
+                    </a-cylinder>
+                  </a-sphere>
+
+                  <a-sphere color="tomato" radius=".3" position="-1.2 -1.5 0" rotation="0 180 0">
+                    <a-animation attribute="rotation" from = "0 0 0" to="0 0 -135" direction="alternate" repeat="indefinite" dur= "2500" easing=linear></a-animation>
+                    <a-cylinder color="tomato" height="1.5" radius=".3" position="0 -1 0">
+                      <a-sphere color="tomato" radius=".3" position="0 -1.5 0"">
+                        <a-animation attribute="rotation" from="0 0 -105" to = "0 0 105" direction="alternate" repeat="indefinite" dur="2000" easing=linear></a-animation>
+                        <a-cylinder color="tomato" height="1.5" radius=".3" position="0 -1.5 0">
+                          <a-cone color="tomato" radius-bottom=".5" radius-top="0" position = "0 -1.75 0" scale = ".5 2 1" rotation="180 0 0"></a-cone>
+                        </a-cylinder>
+                      </a-sphere>
+                    </a-cylinder>
+                  </a-sphere>
+                <!-- /Long tentacles -->
+              </a-cylinder>
+            </a-entity>
+
+            
+            <a-entity id="gold"></a-entity>
+
+            <a-sphere color="teal" radius=".1" opacity=".5">
+              <a-animation attribute="position" from = "0 0 0" to="0 50 0" dur="10000" repeat="indefinite" begin="5000"></a-animation>
+            </a-sphere>
+            <a-sphere color="teal" radius=".1" opacity=".5">
+              <a-animation attribute="position" from = ".2 0 .2" to=".2 50 .2" dur="10000" repeat="indefinite" begin="7000"></a-animation>
+            </a-sphere>
+            <a-sphere color="teal" radius=".1" opacity=".5">
+              <a-animation attribute="position" from = "-.2 0 -.2" to="-.2 50 -.2" dur="10000" repeat="indefinite" begin="9000"></a-animation>
+            </a-sphere>
+          </a-box>
+
+        </a-entity>
+
+      <!-- /chest -->
+    </a-scene>
+
+    <script src="ForLoopSpawn.js">   </script>
+  </body>
+
+</html>
